@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Tugas Real</string>
+    <string name="beranda" />
+    <string name="transaksi" />
+    <string name="artikel" />
+    <string name="saya" />
+    <string name="Beranda">Beranda</string>
+    <string name="Transaksi">Transaksi</string>
+    <string name="Artikel">Artikel</string>
+    <string name="Saya">Saya</string>
+    <string name="todo">todo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment">Home Fragment</string>
+    <string name="artikel_fragment">Artikel Fragment</string>
+    <string name="saya_fragment">Saya Fragment</string>
+    <string name="transaksi_fragment">Transaksi Fragment</string>
+    <string name="tentang_saya">Tentang Saya</string>
+    <string name="nama_pengguna">Nama Pengguna</string>
+    <string name="_6281237782873">+6281237782873</string>
+    <string name="ubah">Ubah</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="maharianidewi_gmail_com">maharianidewi@gmail.com</string>
+    <string name="email">Email</string>
+    <string name="budgetbuddy_v1_0_2023_t2ru">BudgetBuddy v1.0 2023 - T2Ru</string>
+    <string name="keluar">Keluar</string>
+    <string name="lihat_detail">lihat detail</string>
+    <string name="statistik">Transaksi Terakhir</string>
+</resources>

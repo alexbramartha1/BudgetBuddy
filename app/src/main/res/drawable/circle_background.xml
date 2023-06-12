@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#00000000" /> <!-- Warna latar belakang transparan -->
+        <corners android:radius="1000dp" /> <!-- Radius sudut yang besar untuk membuat bentuk lingkaran -->
+    </shape>
+
+</selector>
