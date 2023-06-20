@@ -28,4 +28,5 @@
     <string name="keluar">Keluar</string>
     <string name="lihat_detail">lihat detail</string>
     <string name="statistik">Transaksi Terakhir</string>
+    <string name="login">Login</string>
 </resources>

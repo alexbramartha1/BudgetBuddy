@@ -172,6 +172,7 @@
                             android:backgroundTint="#278ACF"
                             android:text="@string/ubah"
                             android:textSize="20sp"
+                            android:padding="10dp"
                             android:textStyle="bold" />
 
                     </LinearLayout>

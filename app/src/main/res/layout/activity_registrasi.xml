@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="32dp"
-        android:text="Masuk ke Akun Anda"
+        android:text="Buat Akun"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_emaillogin"
+        android:id="@+id/edt_emailregistrasi"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,14 +45,31 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_passwordlogin"
+        android:id="@+id/edt_passwordregistrasi"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="25dp"
         android:hint="Password"
-        app:layout_constraintTop_toBottomOf="@+id/edt_emaillogin"
+        app:layout_constraintTop_toBottomOf="@+id/edt_emailregistrasi"
+        tools:layout_editor_absoluteX="35dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_konfirmasipasswordregistrasi"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="25dp"
+        android:hint="Konfirmasi Password"
+        app:layout_constraintTop_toBottomOf="@+id/edt_passwordregistrasi"
         tools:layout_editor_absoluteX="35dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -65,13 +82,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#278ACF"
-        android:text="Login"
+        android:text="Daftar"
         android:padding="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="35dp"
-        app:layout_constraintTop_toBottomOf="@+id/edt_passwordlogin" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_konfirmasipasswordregistrasi" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
