@@ -29,6 +29,23 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_nameregistrasi"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="35dp"
+        android:hint="Nama"
+        app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+        <EditText
+            android:id="@+id/name_registrasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edt_emailregistrasi"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -36,9 +53,10 @@
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="35dp"
         android:hint="Email"
-        app:layout_constraintTop_toBottomOf="@+id/textView11">
+        app:layout_constraintTop_toBottomOf="@+id/edt_nameregistrasi">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/email_registrasi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textEmailAddress"/>
@@ -53,9 +71,12 @@
         android:layout_marginTop="25dp"
         android:hint="Password"
         app:layout_constraintTop_toBottomOf="@+id/edt_emailregistrasi"
-        tools:layout_editor_absoluteX="35dp">
+        tools:layout_editor_absoluteX="35dp"
+        app:passwordToggleEnabled="true"
+        >
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/password_registrasi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword"/>
@@ -70,9 +91,12 @@
         android:layout_marginTop="25dp"
         android:hint="Konfirmasi Password"
         app:layout_constraintTop_toBottomOf="@+id/edt_passwordregistrasi"
-        tools:layout_editor_absoluteX="35dp">
+        tools:layout_editor_absoluteX="35dp"
+        app:passwordToggleEnabled="true"
+        >
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/konfirmasi_password_registrasi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword"/>
@@ -88,7 +112,28 @@
         android:textStyle="bold"
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="35dp"
+        android:id="@+id/btn_register"
         app:layout_constraintTop_toBottomOf="@+id/edt_konfirmasipasswordregistrasi" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apakah Anda sudah memiliki akun ?"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register"></TextView>
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="50dp"
+        android:text="Login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
