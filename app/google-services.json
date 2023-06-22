@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "179460370719",
+    "project_id": "budget-buddy-2da89",
+    "storage_bucket": "budget-buddy-2da89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179460370719:android:e6b986a4c2a2c3f6b5002a",
+        "android_client_info": {
+          "package_name": "com.example.tugasreal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179460370719-g9gp7263ppovkb6sfn1abjumur3n26nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN70yXBLfcCQcWf1cDqnqXS2-zDAP378o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179460370719-g9gp7263ppovkb6sfn1abjumur3n26nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
