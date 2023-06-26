@@ -115,25 +115,39 @@
         android:id="@+id/btn_register"
         app:layout_constraintTop_toBottomOf="@+id/edt_konfirmasipasswordregistrasi" />
 
-    <TextView
-        android:id="@+id/textView12"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Apakah Anda sudah memiliki akun ?"
-        android:textAlignment="center"
+        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register"></TextView>
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="50dp"
-        android:text="Login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_register">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Apakah Anda sudah memiliki akun ? "
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"/>
+
+        <TextView
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Login"
+            android:clickable="true"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
