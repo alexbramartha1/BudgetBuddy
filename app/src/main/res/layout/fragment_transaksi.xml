@@ -50,7 +50,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/button4"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/blue_main"
+                    app:strokeColor="@color/grey"
                     app:strokeWidth="1dp" />
 
                 <Button
