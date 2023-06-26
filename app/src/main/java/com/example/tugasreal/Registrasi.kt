@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.google.android.material.textfield.TextInputEditText
@@ -19,7 +20,7 @@ class Registrasi : AppCompatActivity() {
     lateinit var editPassword:EditText
     lateinit var editPasswordKonfirmasi:EditText
     lateinit var btnRegistrasi:Button
-    lateinit var btnLogin:Button
+    lateinit var btnLogin:TextView
     lateinit var progressDialog: ProgressDialog
 
     var firebaseAuth = FirebaseAuth.getInstance()

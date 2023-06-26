@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.google.firebase.auth.FirebaseAuth
@@ -14,7 +15,7 @@ class login : AppCompatActivity() {
 
     lateinit var editEmail: EditText
     lateinit var editPassword: EditText
-    lateinit var btnRegistrasi: Button
+    lateinit var btnRegistrasi: TextView
     lateinit var btnLogin: Button
     lateinit var progressDialog:ProgressDialog
     var firebaseAuth = FirebaseAuth.getInstance()
