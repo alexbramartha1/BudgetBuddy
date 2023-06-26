@@ -130,6 +130,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/email_user"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
                             android:hint="@string/maharianidewi_gmail_com"
