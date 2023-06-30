@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="35dp"
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
@@ -44,7 +44,8 @@
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+            app:layout_constraintTop_toTopOf="@+id/imageView3"
+            android:fontFamily="@font/InterSemiBold"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -54,7 +55,8 @@
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            android:fontFamily="@font/InterSemiBold"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -83,7 +85,9 @@
                     android:text="sisa uang kamu"
                     android:textAlignment="center"
                     android:textSize="16sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:fontFamily="@font/InterMedium"
+                    android:textColor="@color/D2"/>
 
                 <TextView
                     android:id="@+id/textView7"
@@ -93,7 +97,9 @@
                     android:text="Rp 250.000"
                     android:textAlignment="center"
                     android:textSize="32sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/InterBold"
+                    android:textColor="@color/D2"/>
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -133,7 +139,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pendapatan"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                android:fontFamily="@font/InterMedium"
+                                android:textColor="@color/D2"/>
                         </LinearLayout>
 
 
@@ -163,7 +171,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pengeluaran"
-                                android:textSize="12sp" />
+                                android:textSize="12sp"
+                                android:fontFamily="@font/InterMedium"
+                                android:textColor="@color/D2"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -183,7 +193,8 @@
                         android:text="Rp250.000"
                         android:textAlignment="center"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/InterSemiBold"
+                        android:textColor="@color/green_dark"/>
 
                     <TextView
                         android:id="@+id/textView10"
@@ -193,7 +204,9 @@
                         android:text="Rp250.000"
                         android:textAlignment="center"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/InterSemiBold"
+                        android:textColor="@color/red_dark"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -230,16 +243,21 @@
                         android:layout_height="wrap_content"
                         android:text="Statistik"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/InterBold"
+                        android:textColor="@color/D2"/>
 
                     <TextView
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Statistik 2023"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:fontFamily="@font/InterMedium"
+                        android:textColor="@color/D2"/>
 
                     <com.db.williamchart.view.BarChartView
+                        android:layout_marginTop="10dp"
                         android:id="@+id/barPemasukan"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
@@ -286,13 +304,15 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/InterBold"
+                    android:textColor="@color/D2"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_transaksi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="56dp"
                     app:layout_constraintStart_toStartOf="@+id/tvJudulStatistik"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/item_transaksi" />
