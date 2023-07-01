@@ -36,7 +36,7 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/red_dark"
             android:textSize="16sp" />
-"
+        "
 
 
 
@@ -70,16 +70,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_nominal"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="7dp"-->
-<!--            android:layout_marginLeft="16sp"-->
-<!--            android:layout_toRightOf="@+id/img_item_photo"-->
-<!--            android:text="Rp12.000"-->
-<!--            android:textColor="#808080"-->
-<!--            android:textSize="16sp" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_nominal"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="7dp"-->
+        <!--            android:layout_marginLeft="16sp"-->
+        <!--            android:layout_toRightOf="@+id/img_item_photo"-->
+        <!--            android:text="Rp12.000"-->
+        <!--            android:textColor="#808080"-->
+        <!--            android:textSize="16sp" />-->
 
 
 
