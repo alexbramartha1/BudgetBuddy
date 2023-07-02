@@ -20,9 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.beranda -> replaceFragment(Beranda())
-                R.id.transaksi -> replaceFragment(Transaksi())
+                R.id.transaksi -> replaceFragment(TambahTransaksi())
                 R.id.artikel -> replaceFragment(Artikel())
                 R.id.profil -> replaceFragment(Saya())
+                R.id.placeholder -> replaceFragment(Transaksi())
             }
             true
         }
