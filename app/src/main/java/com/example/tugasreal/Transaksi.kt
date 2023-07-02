@@ -1,19 +1,19 @@
 package com.example.tugasreal
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.tugasreal.databinding.ActivityMainBinding
+import androidx.fragment.app.Fragment
 import com.example.tugasreal.databinding.FragmentTransaksiBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +33,7 @@ class Transaksi : Fragment() {
     private var _binding: FragmentTransaksiBinding? = null
     private val binding get() = _binding!!
     private var type:String = "income"
+    private lateinit var user:FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,7 @@ class Transaksi : Fragment() {
         }
 
         database = Firebase.database.reference
+        user = FirebaseAuth.getInstance().currentUser!!
     }
 
     override fun onCreateView(
@@ -50,13 +52,12 @@ class Transaksi : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTransaksiBinding.inflate(inflater, container, false)
-        var dummyEmail = "andika wiratana"
         binding.saveExchange.setOnClickListener {
             var amount      = Integer.parseInt(binding.amount.text.toString())
             var category    = binding.category.text.toString()
             var date        = binding.date.text.toString()
             var description = binding.description.text.toString()
-            this.insert(dummyEmail, amount, this.type, category, date, description)
+            this.insert(amount, this.type, category, date, description)
         }
 
         binding.incomeButton.setOnClickListener {
@@ -119,11 +120,11 @@ class Transaksi : Fragment() {
             }
     }
 
-    fun insert(userID: String, amount: Int, type: String, category: String, date: String, desc: String){
-        var exchange = Exchange(userID, amount, type, category, date, desc)
-        var key      = this.database.child("exchange").push().getKey()
+    fun insert(amount: Int, type: String, category: String, date: String, desc: String){
+        var exchange = Exchange(amount, type, category, date, desc)
+        var key      = this.database.child("users/${user.uid}/exchange").push().getKey()
         key?.let {
-            this.database.child("exchange").child(it).setValue(exchange).addOnCompleteListener{ task ->
+            this.database.child("users/${user.uid}/exchange").child(it).setValue(exchange).addOnCompleteListener{ task ->
                 if (task.isSuccessful){
                     Toast.makeText(context, "Succcessfull saving exchange!", Toast.LENGTH_LONG)
                     println("success")
