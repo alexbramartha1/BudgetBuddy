@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Artikel">
+    tools:context=".PilihKategori">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/artikel"
+        android:id="@+id/pilih_kategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Artikel"
+        android:text="Pilih Kategori"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -21,10 +20,10 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_artikel"
+        android:id="@+id/rv_pilihan_kategori"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
-        tools:listitem="@layout/item_artikel" />
+        tools:listitem="@layout/item_kategori" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
