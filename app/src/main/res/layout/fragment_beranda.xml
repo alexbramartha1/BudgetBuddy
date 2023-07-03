@@ -256,15 +256,12 @@
                         android:fontFamily="sans-serif"
                         android:textColor="@color/D2"/>
 
-                    <com.db.williamchart.view.BarChartView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/barPemasukan"
+
+                    <LinearLayout
+                        android:id="@+id/chartContainer"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        app:chart_barsColor="#18C88E"
-                        app:chart_barsRadius="0dp"
-                        app:chart_labelsColor="@color/dark_grey"
-                        app:chart_labelsSize="10sp" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"></LinearLayout>
 
                     <TextView
                         android:id="@+id/tvLihatDetailStatistik"
