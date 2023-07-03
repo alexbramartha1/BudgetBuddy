@@ -42,7 +42,7 @@
                     android:layout_marginTop="40dp"
                     android:background="@drawable/circle_background"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/your_image"
+                    android:src="@drawable/blankimage"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tentangSaya" />
 

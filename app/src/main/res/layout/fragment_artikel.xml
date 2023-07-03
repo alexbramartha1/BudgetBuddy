@@ -6,11 +6,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Artikel">
 
+    <TextView
+        android:id="@+id/JudulArtikel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Artikel"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/D2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_artikel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        tools:listitem="@layout/item_artikel" />
+        android:layout_marginTop="60dp"
+        tools:listitem="@layout/item_artikel"/>
 
 </FrameLayout>
