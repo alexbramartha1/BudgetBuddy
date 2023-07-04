@@ -82,7 +82,23 @@
             android:layout_height="match_parent"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_no_telp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="25dp"
+        android:hint="No Telp"
+        app:layout_constraintTop_toBottomOf="@+id/edt_gender"
+        tools:layout_editor_absoluteX="35dp">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/no_telp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/simpan"
         android:layout_width="match_parent"
@@ -94,7 +110,7 @@
         android:textStyle="bold"
         android:layout_marginTop="25dp"
         android:layout_marginHorizontal="35dp"
-        app:layout_constraintTop_toBottomOf="@+id/edt_gender" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_no_telp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

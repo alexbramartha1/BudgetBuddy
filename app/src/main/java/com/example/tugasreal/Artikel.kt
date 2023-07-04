@@ -22,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
 class Artikel : Fragment() {
 
     private var _binding: FragmentArtikelBinding? = null
- 
+
     private val binding get() = _binding!!
     private val list = ArrayList<News>()
 
