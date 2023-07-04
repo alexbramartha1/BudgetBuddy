@@ -23,6 +23,12 @@
             android:name=".DetailTransaksi"
             android:exported="false" />
         <activity
+            android:name=".TambahTransaksi"
+            android:exported="false" />
+        <activity
+            android:name=".Transaksi"
+            android:exported="false" />
+        <activity
             android:name=".PilihKategori"
             android:exported="false" />
         <activity
