@@ -1,18 +1,23 @@
 package com.example.tugasreal
 
+import android.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.tugasreal.databinding.FragmentTransaksiBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,6 +39,8 @@ class Transaksi : Fragment() {
     private val binding get() = _binding!!
     private var type:String = "income"
     private lateinit var user:FirebaseUser
+    private lateinit var exchange:Exchange
+    private var state = "insert"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +51,26 @@ class Transaksi : Fragment() {
 
         database = Firebase.database.reference
         user = FirebaseAuth.getInstance().currentUser!!
+
+        var extra: Bundle? = arguments
+        if (extra != null){
+            println("amount : ${extra.getString("exchangeId")}")
+            println("amount : ${extra.getInt("amount")}")
+            println("type : ${extra.getString("type")}")
+            println("category : ${extra.getString("category")}")
+            println("date : ${extra.getString("date")}")
+            println("desc : ${extra.getString("desc")}")
+            this.exchange = Exchange (
+                extra.getString("exchangeId"),
+                extra.getInt("amount"),
+                extra.getString("type"),
+                extra.getString("category"),
+                extra.getString("date"),
+                extra.getString("desc"),
+            )
+            this.type  = extra.getString("type").toString()
+            this.state = "update"
+        }
     }
 
     override fun onCreateView(
@@ -57,7 +84,12 @@ class Transaksi : Fragment() {
             var category    = binding.category.text.toString()
             var date        = binding.date.text.toString()
             var description = binding.description.text.toString()
-            this.insert(amount, this.type, category, date, description)
+
+            when(state){
+                "insert" -> this.insert(amount, this.type, category, date, description)
+                "update" -> this.update(exchange.id, amount, this.type, category, date, description)
+            }
+            activity?.supportFragmentManager?.beginTransaction()?.replace(com.example.tugasreal.R.id.transaksiContainer, TambahTransaksi())?.commit()
         }
 
         binding.incomeButton.setOnClickListener {
@@ -70,6 +102,12 @@ class Transaksi : Fragment() {
             this.type = "expanse"
             println(this.type)
             this.setFeatureButton()
+        }
+
+        var extra: Bundle? = arguments
+        if(extra != null){
+            setFeatureButton()
+            setExchange()
         }
 
         val view = binding.root
@@ -85,12 +123,12 @@ class Transaksi : Fragment() {
         }
         when(this.type){
             "income" -> {
-                binding.incomeButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_light))
-                binding.incomeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_dark))
+                binding.incomeButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_light))
+                binding.incomeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_dark))
             }
             "expanse" -> {
-                binding.expanseButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue_light))
-                binding.expanseButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_dark))
+                binding.expanseButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_light))
+                binding.expanseButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_dark))
             }
         }
     }
@@ -121,15 +159,45 @@ class Transaksi : Fragment() {
     }
 
     fun insert(amount: Int, type: String, category: String, date: String, desc: String){
-        var exchange = Exchange(amount, type, category, date, desc)
         var key      = this.database.child("users/${user.uid}/exchange").push().getKey()
+        var exchange = Exchange(key, amount, type, category, date, desc)
         key?.let {
-            this.database.child("users/${user.uid}/exchange").child(it).setValue(exchange).addOnCompleteListener{ task ->
+            println(key)
+            println("users/${user.uid}/exchange")
+            this.database.child("users/${user.uid}/exchange").child(key).setValue(exchange).addOnCompleteListener{ task ->
                 if (task.isSuccessful){
                     Toast.makeText(context, "Succcessfull saving exchange!", Toast.LENGTH_LONG)
                     println("success")
                 }
             }
         }
+    }
+
+    fun update(id:String?, amount: Int, type: String, category: String, date: String, desc: String){
+        Log.d("firebase", type)
+        Log.d("firebase", category)
+        var exchange = mapOf<String, Any>(
+            "id" to id.toString(),
+            "amount" to amount,
+            "category" to category,
+            "type" to type,
+            "date" to date,
+            "desc" to desc
+        )
+        id?.let {
+            this.database.child("users/${user.uid}/exchange").child(id).updateChildren(exchange).addOnCompleteListener{ task ->
+                if (task.isSuccessful){
+                    Toast.makeText(context, "Succcessfull saving exchange!", Toast.LENGTH_LONG)
+                    println("success")
+                }
+            }
+        }
+    }
+
+    fun setExchange(){
+        binding.amount.setText(""+exchange.amount!!)
+        binding.category.setText(""+exchange.category)
+        binding.date.setText(""+exchange.date)
+        binding.description.setText(""+exchange.desc)
     }
 }

@@ -1,6 +1,6 @@
 package com.example.tugasreal
 
-import android.R.attr.data
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasreal.databinding.FragmentBerandaBinding
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.utils.MPPointF
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -25,6 +26,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.Locale
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -65,7 +69,8 @@ class Beranda : Fragment() {
         _binding = FragmentBerandaBinding.inflate(inflater, container, false)
         database.child("users/${user.uid}/exchange").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("firebase", "onChildAdded:" + snapshot.value)
+                Log.d("firebase", "onChildAdded:" + snapshot)
+                displayExchanges(snapshot!!.children)
                 displayStatistic(snapshot!!.children)
             }
 
@@ -96,6 +101,15 @@ class Beranda : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    fun displayExchanges(exchanges: Iterable<DataSnapshot>){
+        binding.rvExchange.layoutManager = LinearLayoutManager(context)
+        val data = ArrayList<Exchange>()
+        exchanges.map {
+            data.add(Exchange(it.key, it.getValue<Exchange>()!!.amount, it.getValue<Exchange>()!!.type, it.getValue<Exchange>()!!.category, it.getValue<Exchange>()!!.date, it.getValue<Exchange>()!!.desc))
+        }
+        binding.rvExchange.adapter = ExchangeAdapter(data)
     }
 
     fun displayStatistic(exchanges:Iterable<DataSnapshot>){
@@ -148,59 +162,67 @@ class Beranda : Fragment() {
         println("income_rate : ${income_rate}")
         println("expanse_rate : ${expanse_rate}")
         println("total_rate : ${total_rate}")
+        val formatter: NumberFormat = DecimalFormat("#,###")
+        binding.textView9.text = "Rp. ${formatter.format(income)}"
+        binding.textView10.text = "Rp. ${formatter.format(expanse)}"
+        binding.textView7.text  = "Rp. ${formatter.format(income-expanse)}"
 
-        var chart = PieChart(context)
-        val pieEntries = ArrayList<PieEntry>()
-        val label = "type"
+        val activity:FragmentActivity? = getActivity()
 
-        //initializing data
+        if(activity != null && expanse_index + income_index != 0){
+            var chart = PieChart(activity)
+            val pieEntries = ArrayList<PieEntry>()
+            val label = "type"
 
-        //initializing data
-        val typeExchangeMap: MutableMap<String, String> = HashMap()
-        typeExchangeMap["income"] = "${income_percentage}%"
-        typeExchangeMap["expanse"] = "${expanse_percentage}%"
+            //initializing data
 
-        //initializing colors for the entries
+            //initializing data
+            val typeExchangeMap: MutableMap<String, Int> = HashMap()
+            typeExchangeMap["income"] = income_percentage
+            typeExchangeMap["expanse"] = expanse_percentage
 
-        //initializing colors for the entries
-        val colors = ArrayList<Int>()
-        colors.add(Color.parseColor("#ff9999"))
-        colors.add(Color.parseColor("#b3e6ff"))
+            //initializing colors for the entries
 
-        //input data and fit data into pie chart entry
+            //initializing colors for the entries
+            val colors = ArrayList<Int>()
+            colors.add(Color.parseColor("#ff9999"))
+            colors.add(Color.parseColor("#b3e6ff"))
 
-        //input data and fit data into pie chart entry
-        for (type in typeExchangeMap.keys) {
-            pieEntries.add(PieEntry(typeExchangeMap[type]!!.toFloat(), type))
+            //input data and fit data into pie chart entry
+
+            //input data and fit data into pie chart entry
+            for (type in typeExchangeMap.keys) {
+                pieEntries.add(PieEntry(typeExchangeMap[type]!!.toFloat(), type))
+            }
+
+            var dataSet = PieDataSet(pieEntries, "")
+            dataSet.setDrawIcons(false)
+            dataSet.setSliceSpace(10f)
+            dataSet.setColors(colors)
+
+            var data = PieData(dataSet)
+            data.setDrawValues(true)
+            data.setValueFormatter(PercentFormatter())
+            data.setValueTextSize(20f)
+            data.setValueTextColor(Color.rgb(64, 64, 64));
+
+            chart.setRotationEnabled(true);
+            chart.setHighlightPerTapEnabled(true);
+            chart.setUsePercentValues(true);
+            chart.getDescription().setEnabled(false);
+            chart.setDragDecelerationFrictionCoef(0.95f);
+            chart.setDrawHoleEnabled(true);
+            chart.setHoleColor(Color.WHITE);
+            chart.setTransparentCircleColor(Color.WHITE);
+            chart.setTransparentCircleAlpha(110);
+            chart.setHoleRadius(58f);
+            chart.setTransparentCircleRadius(61f);
+            chart.setRotationAngle(0F);
+            chart.setData(data)
+            chart.setDrawEntryLabels(false)
+            var  param: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,500);
+            chart.layoutParams = param
+            binding.chartContainer.addView(chart)
         }
-
-        var dataSet = PieDataSet(pieEntries, "")
-        dataSet.setDrawIcons(false)
-        dataSet.setSliceSpace(10f)
-        dataSet.setColors(colors)
-
-        var data = PieData(dataSet)
-        data.setDrawValues(true)
-        data.setValueFormatter(PercentFormatter())
-        data.setValueTextSize(20f)
-        data.setValueTextColor(Color.rgb(64, 64, 64));
-
-        chart.setRotationEnabled(true);
-        chart.setHighlightPerTapEnabled(true);
-        chart.setUsePercentValues(true);
-        chart.getDescription().setEnabled(false);
-        chart.setDragDecelerationFrictionCoef(0.95f);
-        chart.setDrawHoleEnabled(true);
-        chart.setHoleColor(Color.WHITE);
-        chart.setTransparentCircleColor(Color.WHITE);
-        chart.setTransparentCircleAlpha(110);
-        chart.setHoleRadius(58f);
-        chart.setTransparentCircleRadius(61f);
-        chart.setRotationAngle(0F);
-        chart.setData(data)
-        chart.setDrawEntryLabels(false)
-        var  param: RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,500);
-        chart.layoutParams = param
-        binding.chartContainer.addView(chart)
     }
 }
