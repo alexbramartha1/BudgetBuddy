@@ -31,9 +31,7 @@ class LengkapiProfil : AppCompatActivity() {
 
         binding.uploadImage.setImageURI(imageUri)
     }
-//    lateinit var uploadImage: ImageView
-//    var storageRef = Firebase.storage
-//    var fireStore =  Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLengkapiProfilBinding.inflate(layoutInflater)
@@ -97,16 +95,7 @@ class LengkapiProfil : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this,"User register gagal ",Toast.LENGTH_SHORT).show()
             }
-//        FirebaseDatabase.getInstance().getReference("users")
-//            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-//            .setValue(data).addOnCompleteListener {
-//                if (it.isSuccessful){
-//                    startActivity(Intent(this,MainActivity::class.java))
-//                    Toast.makeText(this,"User register berhasil",Toast.LENGTH_SHORT).show()
-//                }else{
-//                    Toast.makeText(this,it.exception!!.message,Toast.LENGTH_SHORT).show()
-//                }
-//            }
+
     }
 
 }
