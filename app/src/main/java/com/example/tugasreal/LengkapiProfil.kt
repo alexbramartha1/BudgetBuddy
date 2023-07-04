@@ -15,7 +15,6 @@ import com.example.tugasreal.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -31,7 +30,9 @@ class LengkapiProfil : AppCompatActivity() {
 
         binding.uploadImage.setImageURI(imageUri)
     }
-
+//    lateinit var uploadImage: ImageView
+//    var storageRef = Firebase.storage
+//    var fireStore =  Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLengkapiProfilBinding.inflate(layoutInflater)
@@ -50,6 +51,7 @@ class LengkapiProfil : AppCompatActivity() {
         if (binding.namalengkap.text.toString().isEmpty()
             || binding.tanggallahir.text.toString().isEmpty()
             || binding.gender.text.toString().isEmpty()
+            || binding.noTelp.text.toString().isEmpty()
             || imageUri == null){
             Toast.makeText(this, "tolong isi semua kolom",Toast.LENGTH_SHORT).show()
         }else{
@@ -58,11 +60,11 @@ class LengkapiProfil : AppCompatActivity() {
     }
 
     private fun uploadImage() {
-
         val storageRef = FirebaseStorage.getInstance()
             .getReference("user")
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .child("profile.jpg")
+
         storageRef.putFile(imageUri!!)
             .addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener {
@@ -75,27 +77,27 @@ class LengkapiProfil : AppCompatActivity() {
             }
     }
 
-    private fun storeData(imageUrl: Uri?) {
+    private fun storeData(it: Uri?) {
         val data = User(
-            name = FirebaseAuth.getInstance().currentUser!!.displayName,
+            name = FirebaseAuth.getInstance().currentUser?.displayName,
             fullName = binding.namalengkap.text.toString(),
-            email = FirebaseAuth.getInstance().currentUser!!.email,
+            email = FirebaseAuth.getInstance().currentUser?.email,
             birthDate = binding.tanggallahir.text.toString(),
             gender = binding.gender.text.toString(),
-            image = imageUrl.toString()
+            image = imageUri.toString(),
+            noTelp = binding.noTelp.text.toString()
         )
 
-        Firebase.firestore.collection("users")
-            .document(FirebaseAuth.getInstance().currentUser!!.uid)
-            .set(data)
-            .addOnSuccessListener {
-                startActivity(Intent(this,MainActivity::class.java))
-                Toast.makeText(this,"User register berhasil",Toast.LENGTH_SHORT).show()
+        FirebaseDatabase.getInstance().getReference("users")
+            .child(FirebaseAuth.getInstance().currentUser!!.uid)
+            .child("profile")
+            .setValue(data).addOnCompleteListener {
+                if (it.isSuccessful){
+                    Toast.makeText(this,"User register berhasil",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this,it.exception!!.message,Toast.LENGTH_SHORT).show()
+                }
             }
-            .addOnFailureListener {
-                Toast.makeText(this,"User register gagal ",Toast.LENGTH_SHORT).show()
-            }
-
     }
 
 }
