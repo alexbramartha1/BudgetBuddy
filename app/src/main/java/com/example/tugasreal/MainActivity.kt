@@ -1,10 +1,17 @@
 package com.example.tugasreal
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.window.SplashScreen
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.tugasreal.databinding.ActivityMainBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,9 +30,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.transaksi -> replaceFragment(TambahTransaksi())
                 R.id.artikel -> replaceFragment(Artikel())
                 R.id.profil -> replaceFragment(Saya())
-                R.id.placeholder -> replaceFragment(Transaksi())
             }
             true
+        }
+        binding.plus.setOnClickListener{
+            replaceFragment(Transaksi())
         }
     }
 
