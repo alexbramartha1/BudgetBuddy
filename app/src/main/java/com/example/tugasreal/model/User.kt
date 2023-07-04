@@ -7,4 +7,5 @@ data class User(
     val birthDate:String? = "",
     val gender:String? = "",
     val image:String? = "",
+    val noTelp:String? = "",
 )
