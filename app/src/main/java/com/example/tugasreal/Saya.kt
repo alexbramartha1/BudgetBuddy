@@ -1,15 +1,24 @@
 package com.example.tugasreal
 
 import android.content.Intent
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.example.tugasreal.databinding.FragmentSayaBinding
+import com.example.tugasreal.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +31,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Saya : Fragment() {
-    // TODO: Rename and change types of parameters
+    val firestore = Firebase.firestore
+    lateinit var userData:Map<String,String>
     private var param1: String? = null
     private var param2: String? = null
     private var firebaseAuth = FirebaseAuth.getInstance()
@@ -38,6 +48,9 @@ class Saya : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         // Inflate the layout for this fragment
       val binding = FragmentSayaBinding.inflate(inflater,container,false)
        binding.namaPengguna.text = firebaseAuth.currentUser?.displayName
@@ -47,29 +60,33 @@ class Saya : Fragment() {
             startActivity(Intent(this.context,login::class.java))
         }
 
+        var TAG = "firestore"
+        val docRef  = firestore.collection("users")
+            .document(FirebaseAuth.getInstance().currentUser!!.uid)
+        docRef.get()
+            .addOnSuccessListener {document ->
+                if (document != null) {
+                           Glide.with(this)
+                               .load(document.data?.get("image"))
+                               .into(binding.imageView)
+                    binding.editTextBirthday.setText(document.data?.get("birthDate").toString())
+                    binding.editgender.setText(document.data?.get("gender").toString())
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }.addOnFailureListener {exception ->
+                Log.d(TAG, "get failed with ", exception)
+
+            }
+
+//
+
         return binding.root
 
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Saya.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Saya().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 
     private fun prosessLogOut (){
         firebaseAuth.signOut()
