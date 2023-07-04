@@ -81,7 +81,7 @@ class Registrasi : AppCompatActivity() {
                     user!!.updateProfile(userUpdateProfile)
                         .addOnCompleteListener {
                             progressDialog.dismiss()
-                            startActivity(Intent(this, MainActivity::class.java))
+                            startActivity(Intent(this, LengkapiProfil::class.java))
                         }
                         .addOnFailureListener { error2 ->
                           Toast.makeText(this,error2.localizedMessage, LENGTH_SHORT).show()

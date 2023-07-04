@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Artikel">
+    tools:context=".Artikel"
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/artikel"
+        android:id="@+id/JudulArtikel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -24,7 +24,7 @@
         android:id="@+id/rv_artikel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        tools:listitem="@layout/item_artikel" />
+        android:layout_marginTop="60dp"
+        tools:listitem="@layout/item_artikel"/>
 
 </FrameLayout>

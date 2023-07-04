@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
 <FrameLayout
     android:layout_width="match_parent"
@@ -42,7 +43,7 @@
                     android:layout_marginTop="40dp"
                     android:background="@drawable/circle_background"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/your_image"
+                    android:src="@drawable/blankimage"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tentangSaya" />
 
@@ -146,14 +147,14 @@
                             android:text="@string/jenis_kelamin"
                             android:textSize="14sp"
                             android:textStyle="bold" />
-
-                        <!--            <Spinner-->
-                        <!--                android:id="@+id/spinnerGender"-->
-                        <!--                android:layout_width="match_parent"-->
-                        <!--                android:layout_height="48dp"-->
-                        <!--                android:entries="@array/gender_options"-->
-                        <!--                android:dropDownItemResource="@layout/custom_spinner_item"-->
-                        <!--                android:prompt="@string/gender_hint" />-->
+                        <EditText
+                            android:id="@+id/editgender"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:focusable="false"
+                            android:hint="pria"
+                            android:inputType="date"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="match_parent"
