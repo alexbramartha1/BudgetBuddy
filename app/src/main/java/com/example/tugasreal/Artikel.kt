@@ -14,21 +14,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Artikel.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class Artikel : Fragment() {
 
     private var _binding: FragmentArtikelBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+ 
     private val binding get() = _binding!!
     private val list = ArrayList<News>()
 
