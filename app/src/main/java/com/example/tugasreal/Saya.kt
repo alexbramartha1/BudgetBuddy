@@ -63,6 +63,7 @@ class Saya : Fragment() {
                            Glide.with(this)
                                .load(document.data?.get("image"))
                                .into(binding.imageView)
+                    binding.nomorPengguna.text = document.data?.get("noTelp").toString()
                     binding.editTextBirthday.setText(document.data?.get("birthDate").toString())
                     binding.editgender.setText(document.data?.get("gender").toString())
                     Log.d(TAG, "DocumentSnapshot data: ${document.data}")
