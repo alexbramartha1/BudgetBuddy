@@ -30,9 +30,7 @@ class LengkapiProfil : AppCompatActivity() {
 
         binding.uploadImage.setImageURI(imageUri)
     }
-//    lateinit var uploadImage: ImageView
-//    var storageRef = Firebase.storage
-//    var fireStore =  Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLengkapiProfilBinding.inflate(layoutInflater)
@@ -77,7 +75,7 @@ class LengkapiProfil : AppCompatActivity() {
             }
     }
 
-    private fun storeData(it: Uri?) {
+    private fun storeData(imageUri: Uri?) {
         val data = User(
             name = FirebaseAuth.getInstance().currentUser?.displayName,
             fullName = binding.namalengkap.text.toString(),
@@ -87,16 +85,15 @@ class LengkapiProfil : AppCompatActivity() {
             image = imageUri.toString(),
             noTelp = binding.noTelp.text.toString()
         )
-
-        FirebaseDatabase.getInstance().getReference("users")
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child("profile")
-            .setValue(data).addOnCompleteListener {
-                if (it.isSuccessful){
-                    Toast.makeText(this,"User register berhasil",Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this,it.exception!!.message,Toast.LENGTH_SHORT).show()
-                }
+        Firebase.firestore.collection("users")
+            .document(FirebaseAuth.getInstance().currentUser!!.uid)
+            .set(data)
+            .addOnSuccessListener {
+                startActivity(Intent(this,MainActivity::class.java))
+                Toast.makeText(this,"User register berhasil",Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this,"User register gagal ",Toast.LENGTH_SHORT).show()
             }
     }
 
