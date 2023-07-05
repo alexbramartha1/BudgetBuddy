@@ -36,6 +36,13 @@ class MainActivity : AppCompatActivity() {
         binding.plus.setOnClickListener{
             replaceFragment(Transaksi())
         }
+
+        val extra = intent.extras
+        if (extra != null){
+            when(extra.getString("target")){
+                "tambah-transaksi" -> {replaceFragment((TambahTransaksi()))}
+            }
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
