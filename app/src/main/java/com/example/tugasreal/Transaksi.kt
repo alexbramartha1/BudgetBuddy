@@ -1,6 +1,7 @@
 package com.example.tugasreal
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -89,7 +90,11 @@ class Transaksi : Fragment() {
                 "insert" -> this.insert(amount, this.type, category, date, description)
                 "update" -> this.update(exchange.id, amount, this.type, category, date, description)
             }
-            activity?.supportFragmentManager?.beginTransaction()?.replace(com.example.tugasreal.R.id.transaksiContainer, TambahTransaksi())?.commit()
+            //activity?.supportFragmentManager?.beginTransaction()?.replace(com.example.tugasreal.R.id.transaksiContainer, TambahTransaksi())?.commit()
+            val intent: Intent = Intent(it.context, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("target", "tambah-transaksi")
+            ContextCompat.startActivity(it.context, intent, null)
         }
 
         binding.incomeButton.setOnClickListener {
