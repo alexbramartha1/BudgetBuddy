@@ -119,16 +119,16 @@ class Transaksi : Fragment() {
         //Reset buttons theme
         for(button in buttons){
             button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-            button.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            button.setTextColor(ContextCompat.getColor(requireContext(), R.color.darker_gray))
         }
         when(this.type){
             "income" -> {
                 binding.incomeButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_light))
-                binding.incomeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_dark))
+                binding.incomeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             }
             "expanse" -> {
                 binding.expanseButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_light))
-                binding.expanseButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.holo_blue_dark))
+                binding.expanseButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             }
         }
     }

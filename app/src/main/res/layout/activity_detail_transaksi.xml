@@ -25,7 +25,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/D2"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="32dp"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView4"
@@ -33,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 app:cardCornerRadius="8dp"
+                android:layout_marginTop="34dp"
                 app:cardElevation="2dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

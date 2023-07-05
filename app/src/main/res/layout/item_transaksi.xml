@@ -35,7 +35,7 @@
             android:layout_toRightOf="@id/exchangeItemImage"
             android:fontFamily="sans-serif"
             android:text="- Rp 12.000"
-            android:textColor="@color/red_dark"
+            android:textColor="@color/D1"
             android:textSize="16sp" />
 "
 
